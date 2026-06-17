@@ -68,12 +68,14 @@ button:hover { background-color: #219150; }
 }
 
 #receipt-canvas {
-    width: 700px;
-    padding: 40px;
+    width: 100%;
+    max-width: 700px;
+    padding: 30px;
     background: white;
     border: 2px solid #333;
     position: relative;
     color: #000;
+    box-sizing: border-box;
 }
 
 .receipt-header {
@@ -101,7 +103,7 @@ button:hover { background-color: #219150; }
 
 .receipt-body table { width: 100%; border-collapse: collapse; }
 .receipt-body td { padding: 10px 5px; vertical-align: top; }
-.label-cell { width: 150px; font-weight: bold; }
+.label-cell { width: 140px; font-weight: bold; }
 .colon-cell { width: 10px; }
 .dotted-line { border-bottom: 1px dotted #000; }
 
@@ -153,3 +155,32 @@ button:hover { background-color: #219150; }
 }
 
 .signature-space { height: 60px; }
+
+/* Responsivitas untuk Layar Mobile */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+    
+    #receipt-canvas {
+        padding: 15px;
+    }
+
+    .receipt-title { font-size: 18px; }
+    .org-name { font-size: 12px; }
+    .org-address { font-size: 10px; }
+    
+    .receipt-logo {
+        width: 50px;
+        margin-right: 10px;
+    }
+
+    .label-cell { width: 90px; font-size: 12px; }
+    .receipt-body td { font-size: 12px; }
+    
+    .nominal-box { font-size: 15px; padding: 8px; }
+    
+    .signature-area { width: 150px; font-size: 12px; }
+    .receipt-stamp { width: 80px; }
+    .prayer-text { font-size: 11px; }
+}
