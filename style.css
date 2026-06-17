@@ -26,6 +26,11 @@ body {
 
 h2 { color: var(--primary-color); text-align: center; }
 
+.nav-switcher {
+    text-align: right;
+    margin-bottom: 10px;
+}
+
 .form-group { margin-bottom: 15px; }
 
 label { 

@@ -31,25 +31,33 @@ function terbilang(angka) {
 function generateReceipt() {
     // 1. Ambil data dari input form
     const nama = document.getElementById('input-nama').value || "-";
-    const alamat = document.getElementById('input-alamat').value || "-";
+    const alamat = document.getElementById('input-alamat')?.value || "-";
     const nominal = document.getElementById('input-nominal').value || 0;
-    const jenis = document.getElementById('input-jenis').value;
+    const jenis = document.getElementById('input-jenis')?.value;
     const keterangan = document.getElementById('input-keterangan').value || "-";
     const penerima = document.getElementById('input-penerima').value || "________________";
 
     // 3. Update konten pada elemen Template Kwitansi
     document.getElementById('res-nama').innerText = nama;
-    document.getElementById('res-alamat').innerText = alamat;
+    if (document.getElementById('res-alamat')) document.getElementById('res-alamat').innerText = alamat;
     document.getElementById('res-nominal').innerText = parseInt(nominal).toLocaleString('id-ID');
-    document.getElementById('res-jenis').innerText = jenis;
+    if (document.getElementById('res-jenis')) document.getElementById('res-jenis').innerText = jenis;
     document.getElementById('res-keterangan').innerText = keterangan;
     document.getElementById('res-terbilang').innerText = (nominal > 0) ? terbilang(nominal) + " Rupiah" : "-";
-    document.getElementById('res-doa').innerText = `“Semoga Allah memberikan pahala atas apa yang Bapak/Ibu ${nama} berikan, dan semoga Allah memberkahi harta yang tersisa serta menjadikannya sebagai pembersih bagi jiwa.”`;
+    
+    const elDoa = document.getElementById('res-doa');
+    if (elDoa) {
+        elDoa.innerText = `“Semoga Allah memberikan pahala atas apa yang Bapak/Ibu ${nama} berikan, dan semoga Allah memberkahi harta yang tersisa serta menjadikannya sebagai pembersih bagi jiwa.”`;
+    }
+
     document.getElementById('res-penerima').innerText = penerima;
     updateDate(); // Memastikan tanggal tetap terbaru saat generate
 
     // 4. Proses konversi elemen HTML menjadi Gambar menggunakan html2canvas
     const receiptElement = document.getElementById('receipt-canvas');
+    
+    // Ambil judul untuk nama file (Kwitansi atau Nota)
+    const docTitle = document.querySelector('.receipt-title').innerText;
     
     html2canvas(receiptElement, {
         scale: 2, // Meningkatkan resolusi agar gambar tidak pecah
@@ -62,7 +70,7 @@ function generateReceipt() {
         
         // Membuat elemen link download sementara
         const link = document.createElement('a');
-        link.download = `Kwitansi-${nama.replace(/\s+/g, '_')}.jpg`;
+        link.download = `${docTitle.replace(/\s+/g, '_')}-${nama.replace(/\s+/g, '_')}.jpg`;
         link.href = image;
         link.click();
     });
