@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator Kwitansi Donasi</title>
+    <!-- Menghubungkan ke file CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Menggunakan library html2canvas untuk export ke gambar -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Form Kwitansi Donasi</h2>
+        <div class="form-group">
+            <label for="input-nama">Nama Donatur</label>
+            <input type="text" id="input-nama" placeholder="Contoh: Ahmad Subarjo">
+        </div>
+        <div class="form-group">
+            <label for="input-alamat">Alamat</label>
+            <input type="text" id="input-alamat" placeholder="Jl. Merdeka No. 123">
+        </div>
+        <div class="form-group">
+            <label for="input-nominal">Nominal (Rp)</label>
+            <input type="number" id="input-nominal" placeholder="Contoh: 500000">
+        </div>
+        <div class="form-group">
+            <label for="input-jenis">Jenis Donasi</label>
+            <select id="input-jenis">
+                <option value="Infak">Infak</option>
+                <option value="Zakat">Zakat</option>
+                <option value="Barang">Barang</option>
+                <option value="Infak Program">Infak Program</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="input-keterangan">Keterangan</label>
+            <textarea id="input-keterangan" rows="3" placeholder="Contoh: Untuk pembangunan masjid"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="input-penerima">Nama Penerima</label>
+            <input type="text" id="input-penerima" placeholder="Nama Petugas Penerima">
+        </div>
+        <button id="btn-create">CREATE & DOWNLOAD JPG</button>
+    </div>
+
+    <!-- Template Kwitansi -->
+    <div class="preview-container">
+        <div id="receipt-canvas">
+            <div class="receipt-header">
+                <img src="gmb/logo.jpeg" alt="Logo" class="receipt-logo">
+                <div class="header-text">
+                    <div class="receipt-title">Kwitansi Donasi</div>
+                    <div class="org-name">Yayasan Al-Ishlah Hidayatullah</div>
+                    <div class="org-address">Jl. Jali timur, kel. Dampyak, Kramat, Kab. Tegal | Telp: 0283-353858</div>
+                </div>
+            </div>
+
+            <div class="receipt-body">
+                <table>
+                    <tr>
+                        <td class="label-cell">Telah Terima Dari</td>
+                        <td class="colon-cell">:</td>
+                        <td id="res-nama" class="dotted-line">-</td>
+                    </tr>
+                    <tr>
+                        <td class="label-cell">Alamat</td>
+                        <td class="colon-cell">:</td>
+                        <td id="res-alamat" class="dotted-line">-</td>
+                    </tr>
+                    <tr>
+                        <td class="label-cell">Sejumlah Uang</td>
+                        <td class="colon-cell">:</td>
+                        <td id="res-terbilang" class="terbilang-box">-</td>
+                    </tr>
+                    <tr>
+                        <td class="label-cell">Jenis Donasi</td>
+                        <td class="colon-cell">:</td>
+                        <td id="res-jenis">-</td>
+                    </tr>
+                    <tr>
+                        <td class="label-cell">Keterangan</td>
+                        <td class="colon-cell">:</td>
+                        <td id="res-keterangan">-</td>
+                    </tr>
+                </table>
+
+                <div class="nominal-box">
+                    Jumlah: Rp. <span id="res-nominal">0</span>,-
+                </div>
+
+                <div id="res-doa" class="prayer-text"></div>
+            </div>
+
+            <div class="receipt-footer">
+                <div>
+                    <p>Status: <strong>LUNAS</strong></p>
+                </div>
+                <div class="signature-area">
+                    <p id="res-tanggal">Tegal, 01 Januari 2024</p>
+                    <p>Petugas Penerima,</p>
+                    <img src="gmb/stampel.png" alt="Stempel" class="receipt-stamp">
+                    <div class="signature-space"></div>
+                    <p><strong>( <span id="res-penerima">________________</span> )</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menghubungkan ke file JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

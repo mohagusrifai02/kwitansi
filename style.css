@@ -1,0 +1,155 @@
+:root {
+    --primary-color: #2c3e50;
+    --accent-color: #27ae60;
+    --bg-color: #f4f7f6;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin: 0;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+h2 { color: var(--primary-color); text-align: center; }
+
+.form-group { margin-bottom: 15px; }
+
+label { 
+    display: block; 
+    margin-bottom: 5px; 
+    font-weight: bold; 
+    color: #555; 
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+button:hover { background-color: #219150; }
+
+/* Styling Kwitansi */
+.preview-container {
+    overflow-x: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#receipt-canvas {
+    width: 700px;
+    padding: 40px;
+    background: white;
+    border: 2px solid #333;
+    position: relative;
+    color: #000;
+}
+
+.receipt-header {
+    display: flex;
+    align-items: center;
+    border-bottom: 3px double #333;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+}
+
+.receipt-logo {
+    width: 80px; /* Anda bisa menyesuaikan ukuran logo di sini */
+    height: auto;
+    margin-right: 20px;
+}
+
+.header-text {
+    flex: 1;
+    text-align: left;
+}
+
+.receipt-title { font-size: 24px; font-weight: bold; text-transform: uppercase; }
+.org-name { font-size: 14px; }
+.org-address { font-size: 12px; }
+
+.receipt-body table { width: 100%; border-collapse: collapse; }
+.receipt-body td { padding: 10px 5px; vertical-align: top; }
+.label-cell { width: 150px; font-weight: bold; }
+.colon-cell { width: 10px; }
+.dotted-line { border-bottom: 1px dotted #000; }
+
+.terbilang-box {
+    font-style: italic;
+    background: #f9f9f9;
+    padding: 5px;
+}
+
+.nominal-box {
+    margin-top: 20px;
+    padding: 10px;
+    border: 2px solid #000;
+    display: inline-block;
+    font-size: 18px;
+    font-weight: bold;
+    background: #eee;
+}
+
+.prayer-text {
+    margin-top: 20px;
+    font-style: italic;
+    text-align: center;
+    font-size: 13px;
+    color: #333;
+}
+
+.receipt-footer {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.signature-area { 
+    text-align: center; 
+    width: 200px; 
+    position: relative; 
+}
+
+.receipt-stamp {
+    position: absolute;
+    width: 110px; /* Sesuaikan ukuran stempel */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -20%);
+    opacity: 0.8; /* Membuat stempel sedikit transparan agar terlihat seperti tinta asli */
+    pointer-events: none;
+    z-index: 1;
+}
+
+.signature-space { height: 60px; }
